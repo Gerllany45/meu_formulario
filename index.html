@@ -1,22 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChicCosmétique</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <div>
-        <form>
-            <label>Nome:</label>
-            <input type="text"/>
-            <label>Telefone:</label>
-            <input type="tel"/>
-            <label>E-mail:</label>
-            <input type="email"/>
-            <label>Descrição:</label>
-            <input type="text"/>
-        </form>
-    </div>
+  <div class="container">
+    <header>
+      <img src="assets/image-removebg-preview.png" alt="Logo" class="logo" />
+      <h1 class="heading">ChicCosmétique</h1>
+    </header>
+    <form action="#" method="post" class="form">
+      <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+      </div>
+      <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div class="form-group">
+        <label for="descricao">Feedback:</label>
+        <textarea name="descricao" id="descricao" rows="6
+        "></textarea>
+      </div>
+      <button type="submit" class="btn">Enviar</button>
+      <script>
+        const form = document.querySelector(".form");
+        form.addEventListener("submit", enviarDados);
+
+        async function enviarDados(event) {
+          event.preventDefault();
+          // Pega os valores dos campos do formulário
+          const nome = document.getElementById("nome").value;
+          const telefone = document.getElementById("telefone").value;
+          const email = document.getElementById("email").value;
+          const descricao = document.getElementById("descricao").value;
+
+          // Cria uma variável com os dados do formulário
+          const dados = {
+            nome: nome,
+            telefone: telefone,
+            email: email,
+            descricao: descricao,
+          };
+          console.log(dados);
+          console.log(JSON.stringify(dados));
+
+          try {
+            // Faz uma requisição para a sua API
+            await fetch("INSIRA O LINK DA SUA API AQUI", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(dados),
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      </script>
 </body>
+
 </html>
